@@ -11,6 +11,16 @@ function App() {
 		}
 	};
 
+	const toggleComplete: ToggleComplete = (selectedTodo) => {
+		const updatedTodos = todos.map((todo) => {
+			if (todo === selectedTodo) {
+				return { ...todo, complete: !todo.complete };
+			}
+			return todo;
+		});
+		setTodos(updatedTodos);
+	};
+
 	return (
 		<div className='App'>
 			<h1>Todo app</h1>
