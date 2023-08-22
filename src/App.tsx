@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import { TodoForm } from './components/TodoForm';
+import { TodoList } from './components/TodoList';
 
 function App() {
 	const [todos, setTodos] = useState<Array<Todo>>([]);
-
-	const addTodo: AddTodo = (newTodo) => {
-		if (newTodo !== '') {
-			setTodos([...todos, { text: newTodo, complete: false }]);
-		}
-	};
 
 	const toggleComplete: ToggleComplete = (selectedTodo) => {
 		const updatedTodos = todos.map((todo) => {
@@ -21,10 +16,19 @@ function App() {
 		setTodos(updatedTodos);
 	};
 
+	const addTodo: AddTodo = (newTodo) => {
+		if (newTodo !== '') {
+			setTodos([...todos, { text: newTodo, complete: false }]);
+		}
+	};
+
+	
+
 	return (
 		<div className='App'>
 			<h1>Todo app</h1>
 			<TodoForm addTodo={addTodo} />
+			<TodoList todos={todos} toggleComplete={toggleComplete}/>
 		</div>
 	);
 }
